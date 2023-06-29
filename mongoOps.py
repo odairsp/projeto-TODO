@@ -67,8 +67,8 @@ def create_ativit(ativitname, date, username):
     
     if db["atividades"].find_one({"ativitname" : ativitname}):
         return False
+    
     ativitname = urllib.parse.quote(ativitname)
-    date = date
     username = urllib.parse.quote(username)
    
     return db["atividades"].insert_one({"ativitname": ativitname, "date" : date, "username": username})

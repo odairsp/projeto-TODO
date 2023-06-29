@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 import re
 import pymongo
 from flask_wtf.csrf import CSRFProtect
 import mongoOps
-import datetime
+
 
 app = Flask(__name__)
 app.run(debug=True)
@@ -21,7 +21,6 @@ def login():
     mongoOps.run_migrations()
     erros = []
     form = request.form
-
     username = form["username"]
     regAlfanum = r'^[a-zA-Z0-9]+$'
 
@@ -44,8 +43,9 @@ def login():
         return render_template("login.html", erros=erros)
 
     if mongoOps.valida_user(username, pwd):
-
+        
         erros.append("back - Usuário não encontrado")
+        
         return render_template("login.html", erros=erros)
 
 
@@ -78,8 +78,8 @@ def ativit():
         return render_template("createAtivit.html")
 
     form = request.form
-    mongoOps.create_ativit(form["ativitname"],form["date"],form["username"])
-    atividades = mongoOps.busca_ativit(form["username"])
+    mongoOps.create_ativit(form["ativitname"],form["date"],session["username"])
+    atividades = mongoOps.busca_ativit(session["username"])
 
     return render_template("index.html", atividades=atividades)
 
