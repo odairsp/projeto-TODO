@@ -1,0 +1,55 @@
+<!-- titulo -->
+<!-- descrição -->
+<!-- data de entrega -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+        integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style type="text/css">
+        form {
+            display: flex;
+            align-content: center;
+            text-align: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class=container>
+
+        <div class="row">
+            <section class="six collumns" style="width: 50%; margin: auto; margin-top: 200px;">
+                <h4>Registro de atividades</h4>
+                <form action="/create/ativit" method="POST" id="loginForm">
+                    <div>
+                        {% if erros %}
+                        <ul>
+                            {%for erro in erros%}
+                            <li>{{erro}}</li>
+                            {%endfor%}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <input type="text" name="ativitname" placeholder="ativitname">
+                    <input type="date" name="date" placeholder="data">
+                    <input type="hidden" name="username" value="{{username}}">
+                    <input type="submit" value="Cadastrar" class="button-primary">
+
+                    <a href="/">Voltar</a>
+                </form>
+            </section>
+        </div>
+    </div>
+
+</body>
+
+</html>

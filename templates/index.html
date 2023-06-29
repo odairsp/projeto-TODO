@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Página de Login</title>
+    <link rel="stylesheet" href="https://unpkg.com/chota@latest">
+    <style type="text/css">
+        form {
+            display: flex;
+            align-content: center;
+
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <div class=container>
+
+        <div class="row">
+            <section class="six collumns" style="width: 50%; margin: auto; margin-top: 200px;">
+                <h1> Bem vindo </h1>
+                <form action="">
+                    {%for atividade in atividades %}
+                    <p>{{atividade['ativitname']}} -> {{atividade['date']}}</p>
+                    {% endfor %}
+                    <div>
+                        <a href="/create/ativit" class="button primary">Nova Atividade</a>
+                        <a href="#" class="button primary">Sair</a>
+                    </div>
+                </form>
+        </div>
+
+        </section>
+    </div>
+    </div>
+
+
+
+
+
+</body>
+
+</html>

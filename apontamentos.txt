@@ -1,0 +1,22 @@
+
+
+- atualizando os inserts de atividades
+- sites pesquisados 
+
+    https://tichung.com/blog/2021/20200323_flask/
+
+    https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3
+    https://flask.palletsprojects.com/en/2.3.x/quickstart/
+    https://www.python-engineer.com/posts/flask-todo-app/
+    https://blog.devgenius.io/how-to-create-a-todo-application-with-flask-21b71651c7dc
+    https://tichung.com/blog/2021/20200323_flask/#setting-up-environment-and-flask
+    https://flask.palletsprojects.com/en/1.1.x/quickstart/#routing
+    https://www.mongodb.com/docs/v6.0/reference/bson-types/
+    https://www.mongodb.com/community/forums/t/working-with-datetime-as-string/7296/8
+    https://www.mongodb.com/docs/manual/reference/method/Date/
+    https://www.mongodb.com/docs/mongodb-shell/reference/data-types/#std-label-mongo-shell-date-type
+    https://www.mongodb.com/docs/manual/core/schema-validation/specify-json-schema/
+    https://imasters.com.br/banco-de-dados/trabalhando-com-datas-no-mongodb
+
+- passar para table as visualizações 
+

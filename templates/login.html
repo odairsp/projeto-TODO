@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Página de Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+        integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style type="text/css">
+        form {
+            display: flex;
+            align-content: center;
+            text-align: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class=container>
+
+        <div class="row">
+            <section class="six collumns" style="width: 50%; margin: auto; margin-top: 200px;">
+                <h4>Login</h4>
+                <form action="/index" method="POST" id="loginForm">
+                    
+                    <div>
+                        {% if erros %}
+                        <ul>
+                            {%for erro in erros%}
+                            <li>{{erro}}</li>
+                            {%endfor%}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <input type="text" name="username" placeholder="username">
+                    <input type="password" name="pwd" placeholder="senha">
+                    <input type="submit" value="Entrar" class="button-primary">
+                    <a href="/user/create">Cadastre-se</a>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.querySelector("#loginForm");
+            form.addEventListener("submit", function (event) {
+                //Evito envio do formulario 
+                event.preventDefault();
+
+                var input_usuario = form.querySelector('input[name="username"]');
+                var input_pwd = form.querySelector('input[name="pwd"]');
+                var usuario = input_usuario.value.trim();
+                var pwd = input_pwd.value.trim();
+
+                if (usuario === "") {
+                    alert("Usuário vazio");
+                    input_usuario.focus();
+                    return;
+                }
+
+                if (pwd === "") {
+                    alert("Senha vazia");
+                    input_pwd.focus();
+                    return;
+                }
+
+                const regAlfanum = /^[a-zA-Z0-9]+$/;
+
+                if (!regAlfanum.test(usuario)) {
+                    alert("Usuario deve ser alfanumerico apenas");
+                    input_usuario.focus()
+                    return;
+                }
+
+                const regMaiuscula = /[A-Z]/
+                const regNumero = /[0-9]/
+                const regEspecial = /[@!#$%^&*()/\\]/
+
+                if (!regMaiuscula.test(pwd) || !regNumero.test(pwd) || !regEspecial.test(pwd)) {
+                    alert("Senha precisa de uma maiuscula, um numero e um caractere especial!")
+                    return;
+                }
+                form.submit();
+            });
+        });
+    </script>
+</body>
+
+</html>
