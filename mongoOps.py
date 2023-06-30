@@ -1,6 +1,7 @@
 # definição do schema
 
 import pymongo
+from flask import session
 from pymongo.server_api import ServerApi
 
 # Lib para fazer url-encode
@@ -90,6 +91,8 @@ def busca_ativit(usuario):
     
     if not resposta:
         return False
+    
+
     return resposta
 
 def valida_user(usuario, senha):
@@ -100,5 +103,6 @@ def valida_user(usuario, senha):
  
     senha = urllib.parse.quote(senha)
     if bcrypt.checkpw(senha.encode('utf-8'), usuario["password"]):
+        session["username"] = usuario["username"]
         return True
     return False

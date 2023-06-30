@@ -19,8 +19,9 @@
 
         <div class="row">
             <section class="six collumns" style="width: 50%; margin: auto; margin-top: 200px;">
-                <h1> Bem vindo </h1>
+                <h1> Bem vindo {{username | capitalize}}</h1>
                 <form action="">
+                   
                     {%for atividade in atividades %}
                     <p>{{atividade['ativitname']}} -> {{atividade['date']}}</p>
                     {% endfor %}

@@ -14,11 +14,12 @@ csrf = CSRFProtect(app)
 
 @app.route("/", methods={"GET", "POST"})
 def login():
+    mongoOps.run_migrations()
+
     if request.method == "GET":
         return render_template("login.html")
 
     # VALIDATE LOGIN method POST
-    mongoOps.run_migrations()
     erros = []
     form = request.form
     username = form["username"]
@@ -66,7 +67,7 @@ def index():
     form = request.form
     if (request.method == "POST" and mongoOps.valida_user(form["username"], form["pwd"])):
         atividades = mongoOps.busca_ativit(form["username"])
-        return render_template("index.html", atividades=atividades)
+        return render_template("index.html", atividades=atividades, username=form["username"])
 
     return render_template("login.html")
 
@@ -78,12 +79,14 @@ def ativit():
         return render_template("createAtivit.html")
 
     form = request.form
-    mongoOps.create_ativit(form["ativitname"],form["date"],session["username"])
-    atividades = mongoOps.busca_ativit(session["username"])
+    name = session["username"]
+    mongoOps.create_ativit(form["ativitname"],form["date"],name)
+    atividades = mongoOps.busca_ativit(name)
 
     return render_template("index.html", atividades=atividades)
 
 
-@app.route("/usuario")
-def usuario():
+@app.route("/logout")
+def logout():
+    
     return "<p>Usuário</p>"
