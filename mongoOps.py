@@ -87,12 +87,13 @@ def busca_user(usuario):
 def busca_ativit(usuario):
     usuario = urllib.parse.quote(usuario)
     
-    resposta = db["atividades"].find({"username":usuario})
+    resposta = list(db["atividades"].find({"username":usuario}))
     
     if not resposta:
         return False
     
-
+    for resp in resposta:
+        resp['ativitname'] = urllib.parse.unquote(resp['ativitname'])
     return resposta
 
 def valida_user(usuario, senha):

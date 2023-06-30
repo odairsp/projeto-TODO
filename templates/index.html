@@ -21,10 +21,22 @@
             <section class="six collumns" style="width: 50%; margin: auto; margin-top: 200px;">
                 <h1> Bem vindo {{username | capitalize}}</h1>
                 <form action="">
-                   
-                    {%for atividade in atividades %}
-                    <p>{{atividade['ativitname']}} -> {{atividade['date']}}</p>
-                    {% endfor %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Atividade</th>
+                                <th>Data</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for atividade in atividades %}
+                            <tr>
+                                <td>{{atividade['ativitname']}}</td>
+                                <td>{{atividade['date']}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                     <div>
                         <a href="/create/ativit" class="button primary">Nova Atividade</a>
                         <a href="#" class="button primary">Sair</a>
